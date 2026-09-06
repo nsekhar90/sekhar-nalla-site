@@ -1,0 +1,141 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/resume", label: "Resume" },
+  { href: "/blog", label: "Writing" },
+  { href: "/about", label: "About" },
+];
+
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Sekhar Nalla — home">
+      <svg
+        class="brand-mark"
+        width="28"
+        height="28"
+        viewBox="0 0 32 32"
+        fill="none"
+        aria-hidden="true"
+      >
+        <rect
+          x="1.5"
+          y="1.5"
+          width="29"
+          height="29"
+          rx="7"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+        <path
+          d="M10 11.5C10 9.6 11.6 8 13.5 8H18.5C20.4 8 22 9.6 22 11.5V11.5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M10 20.5C10 22.4 11.6 24 13.5 24H18.5C20.4 24 22 22.4 22 20.5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <line x1="22" y1="11.5" x2="22" y2="20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <span class="brand-name">Sekhar Nalla</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class={isActive(item.href) ? "active" : ""}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 64px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-base);
+    letter-spacing: -0.02em;
+  }
+  .brand:hover {
+    color: var(--color-text);
+  }
+  .brand-mark {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+  .site-nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .site-nav a {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+  }
+  .site-nav a:hover {
+    color: var(--color-text);
+    background: var(--color-surface-offset);
+  }
+  .site-nav a.active {
+    color: var(--color-primary);
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 640px) {
+    .brand-name {
+      display: none;
+    }
+    .site-nav ul {
+      gap: 0;
+    }
+    .site-nav a {
+      padding: var(--space-2);
+    }
+  }
+</style>

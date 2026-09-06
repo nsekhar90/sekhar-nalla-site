@@ -1,0 +1,245 @@
+---
+import Base from "../layouts/Base.astro";
+
+const impact = [
+  {
+    metric: "53%",
+    label: "CI duration reduction",
+    body: "Cut mobile CI time through change-aware TeamCity pipelines, conditional execution, and remote Gradle build caching.",
+  },
+  {
+    metric: "KMP",
+    label: "Shared Android + iOS platform",
+    body: "Led modular Kotlin Multiplatform feature SDKs shared across Android and iOS via XCFrameworks — independently versioned and consumable.",
+  },
+  {
+    metric: "AI",
+    label: "Delivery automation",
+    body: "Built agent workflows for release orchestration, failed PR-check remediation, dependency updates, and Maestro verify loops.",
+  },
+];
+---
+
+<Base title="Sekhar Nalla">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">Lead Mobile Software Engineer · San Jose, CA</p>
+      <h1 class="hero-title">
+        Building <span class="accent">Android &amp; Kotlin Multiplatform</span> platforms and applying AI automation to engineering workflows.
+      </h1>
+      <p class="hero-sub muted">
+        I lead mobile architecture and delivery for large-scale consumer and partner products — moving teams from monolithic native apps to modular, shared SDKs, and modernizing the CI/CD and release systems that ship them.
+      </p>
+      <div class="hero-cta">
+        <a href="/resume" class="btn btn-primary">
+          View résumé
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/resume/Sekhar_Nalla_Resume.pdf" download class="btn btn-ghost">
+          Download PDF
+        </a>
+        <a href="https://www.linkedin.com/in/sekhar-nalla-2bb46763/" rel="noopener noreferrer" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact cards -->
+  <section class="section impact-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Selected impact</p>
+        <h2 class="section-title">Where I move the needle</h2>
+      </div>
+      <div class="impact-grid">
+        {
+          impact.map((item) => (
+            <article class="card impact-card">
+              <div class="impact-metric">{item.metric}</div>
+              <div class="impact-label">{item.label}</div>
+              <p class="muted">{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- What I do -->
+  <section class="section what-section">
+    <div class="container what-inner">
+      <div class="what-text">
+        <p class="eyebrow">What I do</p>
+        <h2 class="section-title">Mobile platform engineering, end to end</h2>
+        <p class="muted">
+          My work spans the full mobile platform lifecycle: architecture strategy, shared
+          feature SDKs, networking and authentication cores, multi-repository release
+          engineering, and developer-productivity automation.
+        </p>
+        <p class="muted">
+          The throughline is delivery — turning large, cross-team mobile systems into
+          faster, more reliable, and more observable platforms, and increasingly using
+          AI agents to remove manual toil from release and quality workflows.
+        </p>
+        <a href="/about" class="text-link">More about my background →</a>
+      </div>
+      <div class="what-stack">
+        <p class="eyebrow">Core stack</p>
+        <ul class="tag-list">
+          <li>Android</li>
+          <li>Kotlin</li>
+          <li>Kotlin Multiplatform</li>
+          <li>iOS XCFrameworks</li>
+          <li>Gradle</li>
+          <li>TeamCity</li>
+          <li>Maestro</li>
+          <li>AI agents &amp; MCP</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing CTA -->
+  <section class="section writing-cta">
+    <div class="container">
+      <div class="cta-card">
+        <div>
+          <p class="eyebrow">Writing</p>
+          <h2 class="section-title">Notes on mobile platforms &amp; engineering productivity</h2>
+          <p class="muted">Practical write-ups on Kotlin Multiplatform strategy, CI/CD, release automation, and AI-augmented delivery.</p>
+        </div>
+        <a href="/blog" class="btn btn-primary">Read the blog</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: clamp(var(--space-16), 9vw, var(--space-24)) clamp(var(--space-12), 6vw, var(--space-20));
+    border-bottom: 1px solid var(--color-border);
+  }
+  .hero-inner {
+    max-width: var(--content-wide);
+  }
+  .hero-title {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-5);
+    max-width: 18ch;
+  }
+  .accent {
+    color: var(--color-primary);
+  }
+  .hero-sub {
+    margin-top: var(--space-6);
+    max-width: 62ch;
+    font-size: var(--text-lg);
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .section-head {
+    max-width: 60ch;
+    margin-bottom: var(--space-8);
+  }
+  .section-title {
+    font-size: var(--text-xl);
+    margin-top: var(--space-3);
+  }
+  .impact-section {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+  .impact-card .impact-metric {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.03em;
+  }
+  .impact-card .impact-label {
+    font-weight: 600;
+    margin-top: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+  .impact-card .muted {
+    font-size: var(--text-sm);
+  }
+
+  .what-section {
+    background: var(--color-bg);
+  }
+  .what-inner {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+  .what-text p.muted {
+    margin-top: var(--space-5);
+    max-width: 56ch;
+  }
+  .text-link {
+    display: inline-block;
+    margin-top: var(--space-5);
+    font-weight: 500;
+    font-size: var(--text-sm);
+  }
+  .what-stack {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    background: var(--color-surface);
+  }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+  .tag-list li {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+  }
+
+  .writing-cta {
+    border-top: 1px solid var(--color-border);
+  }
+  .cta-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-10);
+  }
+  .cta-card .section-title {
+    max-width: 40ch;
+  }
+
+  @media (max-width: 860px) {
+    .impact-grid {
+      grid-template-columns: 1fr;
+    }
+    .what-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

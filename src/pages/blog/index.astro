@@ -1,0 +1,123 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<Base title="Writing" description="Technical writing by Sekhar Nalla on Kotlin Multiplatform, mobile CI/CD, release automation, and AI-augmented delivery.">
+  <section class="section blog-page">
+    <div class="container">
+      <p class="eyebrow">Writing</p>
+      <h1 class="blog-title">Notes on mobile platforms &amp; engineering productivity</h1>
+      <p class="blog-sub muted">
+        Practical write-ups drawn from real work: Kotlin Multiplatform platform strategy,
+        CI/CD and build caching, multi-repository release automation, and AI-augmented
+        delivery workflows.
+      </p>
+
+      {
+        posts.length === 0 ? (
+          <div class="empty-state">
+            <p class="muted">No posts published yet — the first articles are in draft.</p>
+            <p class="muted">Topics in progress: reducing mobile CI duration, KMP platform strategy, and release automation for mobile teams.</p>
+          </div>
+        ) : (
+          <ul class="post-list">
+            {posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.id}`} class="post-card card">
+                  <div class="post-card-meta">
+                    <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time>
+                    {post.data.tags.map((tag) => (
+                      <span class="post-tag">{tag}</span>
+                    ))}
+                  </div>
+                  <h2 class="post-card-title">{post.data.title}</h2>
+                  <p class="post-card-desc muted">{post.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .blog-title {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-3);
+    max-width: 22ch;
+  }
+  .blog-sub {
+    margin-top: var(--space-5);
+    max-width: 62ch;
+    font-size: var(--text-lg);
+  }
+  .post-list {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+  }
+  .post-card {
+    display: block;
+    color: var(--color-text);
+  }
+  .post-card:hover {
+    text-decoration: none;
+  }
+  .post-card:hover .post-card-title {
+    color: var(--color-primary);
+  }
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-3);
+  }
+  .post-card-meta time {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+  .post-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: 0.15em 0.6em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+  }
+  .post-card-title {
+    font-size: var(--text-lg);
+    transition: color var(--transition-interactive);
+  }
+  .post-card-desc {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    max-width: 70ch;
+  }
+  .empty-state {
+    margin-top: var(--space-12);
+    padding: var(--space-10);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+  .empty-state p + p {
+    margin-top: var(--space-2);
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <p class="footer-name">Sekhar Nalla</p>
+      <p class="footer-tag muted">Lead Mobile Software Engineer · San Jose, CA</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="https://www.linkedin.com/in/sekhar-nalla-2bb46763/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+      <a href="mailto:nalla.sekhar90@gmail.com">Email</a>
+      <a href="/resume/Sekhar_Nalla_Resume.pdf" download>Résumé PDF</a>
+    </nav>
+    <p class="footer-copy muted">© {year} Sekhar Nalla</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    padding-block: var(--space-8);
+  }
+  .footer-left {
+    margin-right: auto;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .footer-tag {
+    font-size: var(--text-xs);
+    margin-top: var(--space-1);
+  }
+  .footer-nav {
+    display: flex;
+    gap: var(--space-5);
+  }
+  .footer-nav a {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  .footer-copy {
+    font-size: var(--text-xs);
+    width: 100%;
+    text-align: right;
+  }
+  @media (max-width: 640px) {
+    .footer-copy {
+      text-align: left;
+    }
+  }
+</style>

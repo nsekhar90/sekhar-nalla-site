@@ -1,0 +1,81 @@
+---
+import Base from "./Base.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  publishedAt: Date;
+  tags: string[];
+  readingTime?: string;
+}
+
+const { title, description, publishedAt, tags, readingTime } = Astro.props;
+const formattedDate = publishedAt.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Base title={title} description={description}>
+  <article class="post section">
+    <div class="container-narrow">
+      <a href="/blog" class="back-link">← All writing</a>
+      <header class="post-header">
+        <p class="eyebrow">{tags.length ? tags[0] : "Engineering"}</p>
+        <h1 class="post-title">{title}</h1>
+        <p class="post-meta muted">
+          <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
+          {readingTime ? <span> · {readingTime} min read</span> : null}
+        </p>
+        <p class="post-desc">{description}</p>
+      </header>
+      <div class="prose post-body">
+        <slot />
+      </div>
+      <footer class="post-footer">
+        <p class="muted">Thanks for reading. If you'd like to discuss any of this, <a href="mailto:nalla.sekhar90@gmail.com">email me</a> or connect on <a href="https://www.linkedin.com/in/sekhar-nalla-2bb46763/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+      </footer>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .back-link {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+  }
+  .back-link:hover {
+    color: var(--color-primary);
+  }
+  .post-title {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-3);
+    max-width: 24ch;
+  }
+  .post-meta {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    font-family: var(--font-mono);
+  }
+  .post-desc {
+    margin-top: var(--space-5);
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 60ch;
+  }
+  .post-body {
+    margin-top: var(--space-10);
+  }
+  .post-footer {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+  .post-footer a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

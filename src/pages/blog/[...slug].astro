@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// Rough reading time estimate from the raw markdown length.
+const wordCount = post.body?.replace(/[#>*_`-]/g, " ").trim().split(/\s+/).length ?? 200;
+const readingTime = String(Math.max(1, Math.round(wordCount / 200)));
+---
+
+<BlogPost
+  title={post.data.title}
+  description={post.data.description}
+  publishedAt={post.data.publishedAt}
+  tags={post.data.tags}
+  readingTime={readingTime}
+>
+  <Content />
+</BlogPost>

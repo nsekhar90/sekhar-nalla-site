@@ -1,0 +1,45 @@
+<button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="5" />
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .theme-toggle:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const t = document.querySelector("[data-theme-toggle]");
+    const r = document.documentElement;
+    let d = matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light";
+    r.setAttribute("data-theme", d);
+    const sun =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+    const moon =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    t && (t.innerHTML = d === "dark" ? sun : moon);
+    t &&
+      t.addEventListener("click", () => {
+        d = d === "dark" ? "light" : "dark";
+        r.setAttribute("data-theme", d);
+        t.setAttribute("aria-label", "Switch to " + (d === "dark" ? "light" : "dark") + " mode");
+        t.innerHTML = d === "dark" ? sun : moon;
+      });
+  })();
+</script>

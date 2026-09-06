@@ -1,0 +1,112 @@
+---
+import Base from "../layouts/Base.astro";
+
+const LINKEDIN = "https://www.linkedin.com/in/sekhar-nalla-2bb46763/";
+const EMAIL = "nalla.sekhar90@gmail.com";
+---
+
+<Base title="About" description="About Sekhar Nalla — a mobile platform engineer focused on Android, Kotlin Multiplatform, CI/CD, and AI-augmented developer productivity.">
+  <section class="about-page section">
+    <div class="container-narrow">
+      <p class="eyebrow">About</p>
+      <h1 class="about-title">Mobile platform engineer focused on delivery systems and shared platforms.</h1>
+
+      <div class="about-body">
+        <p>
+          I'm Sekhar Nalla, a Lead Mobile Software Engineer based in San Jose, CA. Over the
+          past 12+ years I've built and scaled Android applications — from early
+          GoToMeeting/GoToWebinar work at Citrix and LogMeIn, through modernizing large
+          consumer mobile systems, to leading Kotlin Multiplatform platform strategy at Gen.
+        </p>
+        <p>
+          My core work sits at the intersection of three things:
+        </p>
+        <ul>
+          <li><strong>Mobile platform architecture</strong> — designing modular, independently versioned Kotlin Multiplatform feature SDKs shared between Android and iOS, with clean native UI boundaries and shared networking cores.</li>
+          <li><strong>Engineering productivity &amp; CI/CD</strong> — multi-repository release engineering, change-aware pipelines, remote Gradle build caching, and observability. The result I'm proudest of is a 53% reduction in mobile CI duration.</li>
+          <li><strong>AI-augmented delivery</strong> — agent workflows that automate release orchestration, failed PR-check remediation, dependency updates, and Maestro-based reproduce-and-verify loops.</li>
+        </ul>
+        <p>
+          I care about the systems that make software delivery fast, reliable, and observable
+          across teams — not just the features that ship on top of them. Lately I've been
+          especially interested in how AI agents can remove manual toil from release and
+          quality workflows without sacrificing safety or human judgment where it matters.
+        </p>
+        <p>
+          Outside of work, I explore developer tooling, study algorithms and system design,
+          and learn through hands-on experiments and technical talks.
+        </p>
+      </div>
+
+      <div class="about-cta">
+        <h2 class="about-sub">Let's connect</h2>
+        <p class="muted">
+          I'm open to Lead and Staff Mobile/Android engineering conversations, and to
+          discussing mobile platform, Kotlin Multiplatform, and AI-enabled developer
+          productivity work.
+        </p>
+        <div class="about-links">
+          <a href={EMAIL ? `mailto:${EMAIL}` : "#"} class="btn btn-primary">{EMAIL}</a>
+          <a href={LINKEDIN} rel="noopener noreferrer" target="_blank" class="btn btn-ghost">LinkedIn</a>
+          <a href="/resume/Sekhar_Nalla_Resume.pdf" download class="btn btn-ghost">Résumé PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-title {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-4);
+    max-width: 22ch;
+  }
+  .about-body {
+    margin-top: var(--space-10);
+  }
+  .about-body p {
+    margin-bottom: var(--space-5);
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+  .about-body ul {
+    list-style: none;
+    padding-left: 0;
+    margin: var(--space-5) 0;
+  }
+  .about-body li {
+    position: relative;
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-3);
+    line-height: 1.65;
+    max-width: 66ch;
+  }
+  .about-body li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+  .about-cta {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+  .about-sub {
+    font-size: var(--text-xl);
+  }
+  .about-cta .muted {
+    margin-top: var(--space-3);
+    max-width: 60ch;
+  }
+  .about-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+</style>
