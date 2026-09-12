@@ -10,15 +10,54 @@ draft: false
 
 *How we cut per-feature bundles in half — then consolidated into one umbrella framework.*
 
-```text
-┌─────────────────┐       ┌──────────────────────────────┐
-│ KMM Feature SDKs│ ────▶ │ Core Infrastructure          │
-│                 │ ────▶ │ Account Monitoring           │
-│                 │ ────▶ │ Device Security              │
-│                 │ ────▶ │ Subscription Hub             │
-│                 │ ────▶ │ Fraud Protection             │
-└─────────────────┘       └──────────────────────────────┘
-```
+<figure class="diagram-wrap">
+  <svg
+    class="arch-diagram"
+    viewBox="0 0 720 340"
+    width="720"
+    height="340"
+    role="img"
+    aria-label="KMM Feature SDKs branching into Core Infrastructure and four feature modules"
+  >
+    <defs>
+      <filter id="kmm-architecture-shadow" x="-4%" y="-4%" width="108%" height="112%">
+        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15" />
+      </filter>
+      <marker id="kmm-architecture-arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#333" />
+      </marker>
+    </defs>
+
+    <rect x="20" y="130" width="200" height="80" rx="4" fill="#4a90e2" filter="url(#kmm-architecture-shadow)" />
+    <text x="120" y="162" text-anchor="middle" fill="#fff" font-family="monospace" font-size="15" font-weight="600">KMM Feature</text>
+    <text x="120" y="182" text-anchor="middle" fill="#fff" font-family="monospace" font-size="15" font-weight="600">SDKs</text>
+
+    <path d="M 220 148 C 300 148, 320 58, 400 58" fill="none" stroke="#333" stroke-width="2" marker-end="url(#kmm-architecture-arrow)" />
+    <path d="M 220 158 C 310 158, 330 118, 400 118" fill="none" stroke="#333" stroke-width="2" marker-end="url(#kmm-architecture-arrow)" />
+    <path d="M 220 170 L 400 170" fill="none" stroke="#333" stroke-width="2" marker-end="url(#kmm-architecture-arrow)" />
+    <path d="M 220 182 C 310 182, 330 222, 400 222" fill="none" stroke="#333" stroke-width="2" marker-end="url(#kmm-architecture-arrow)" />
+    <path d="M 220 192 C 300 192, 320 282, 400 282" fill="none" stroke="#333" stroke-width="2" marker-end="url(#kmm-architecture-arrow)" />
+
+    <rect x="400" y="30" width="280" height="56" rx="4" fill="#7ed321" filter="url(#kmm-architecture-shadow)" />
+    <text x="540" y="64" text-anchor="middle" fill="#1a1a2e" font-family="monospace" font-size="16" font-weight="600">Core Infrastructure</text>
+
+    <rect x="400" y="96" width="280" height="44" rx="4" fill="#f5a623" filter="url(#kmm-architecture-shadow)" />
+    <text x="540" y="124" text-anchor="middle" fill="#1a1a2e" font-family="monospace" font-size="15" font-weight="600">Account Monitoring</text>
+
+    <rect x="400" y="152" width="280" height="44" rx="4" fill="#f5a623" filter="url(#kmm-architecture-shadow)" />
+    <text x="540" y="180" text-anchor="middle" fill="#1a1a2e" font-family="monospace" font-size="15" font-weight="600">Device Security</text>
+
+    <rect x="400" y="208" width="280" height="44" rx="4" fill="#f5a623" filter="url(#kmm-architecture-shadow)" />
+    <text x="540" y="236" text-anchor="middle" fill="#1a1a2e" font-family="monospace" font-size="15" font-weight="600">Subscription Hub</text>
+
+    <rect x="400" y="264" width="280" height="44" rx="4" fill="#f5a623" filter="url(#kmm-architecture-shadow)" />
+    <text x="540" y="292" text-anchor="middle" fill="#1a1a2e" font-family="monospace" font-size="15" font-weight="600">Fraud Protection</text>
+  </svg>
+
+  <figcaption>
+    Our starting point: a modular KMP monorepo with one XCFramework per feature.
+  </figcaption>
+</figure>
 
 *Our starting point: a modular KMP monorepo with one XCFramework per feature.*
 
