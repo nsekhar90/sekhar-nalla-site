@@ -317,14 +317,16 @@ securityManager.setToken(token)  // ✅ same type everywhere
 ```
 
 ### Phase 2 results
-
+<div class="table-wrap">
 | Approach | Total size | Notes |
 | --- | ---: | --- |
 | Separate lean bundles (sum) | ~111 MB | Stdlib and shared dependencies duplicated per framework |
 | **Single umbrella (`AppKmmBundle`)** | **~58 MB** | Shared binaries included once |
+</div>
 
 ### What each phase solves
 
+<div class="table-wrap phase-comparison">
 | Problem | Phase 1 | Phase 2 (umbrella) |
 | --- | :---: | :---: |
 | Transitive export bloat | ✅ | ✅ |
@@ -333,6 +335,7 @@ securityManager.setToken(token)  // ✅ same type everywhere
 | Kotlin stdlib duplication in app | ❌ | ✅ |
 | Third-party library duplication | ❌ | ✅ |
 | Cross-feature Swift type compatibility | ❌ | ✅ |
+</div>
 
 ## Quick reference
 

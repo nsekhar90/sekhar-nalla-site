@@ -339,3 +339,28 @@ a:hover {
   color: var(--color-text-muted);
   font-style: italic;
 }
+
+.diagram-wrap {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.arch-diagram {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.diagram-wrap figcaption {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+}
