@@ -6,16 +6,19 @@ const impact = [
     metric: "53%",
     label: "CI duration reduction",
     body: "Cut mobile CI time through change-aware TeamCity pipelines, conditional execution, and remote Gradle build caching.",
+    href: "/blog/reducing-mobile-ci-duration",
   },
   {
     metric: "KMP",
     label: "Shared Android + iOS platform",
     body: "Led modular Kotlin Multiplatform feature SDKs shared across Android and iOS via XCFrameworks — independently versioned and consumable.",
+    href: "/blog/kmm-xcframework-size-optimization",
   },
   {
     metric: "AI",
     label: "Delivery automation",
     body: "Built agent workflows for release orchestration, failed PR-check remediation, dependency updates, and maestro-cli verify loops.",
+    href: "/blog/designing-cross-repository-jira-fix-agent",
   },
 ];
 ---
@@ -54,11 +57,12 @@ const impact = [
       <div class="impact-grid">
         {
           impact.map((item) => (
-            <article class="card impact-card">
+            <a href={item.href} class="card impact-card">
               <div class="impact-metric">{item.metric}</div>
               <div class="impact-label">{item.label}</div>
               <p class="muted">{item.body}</p>
-            </article>
+              <span class="impact-link">Read the case study <span aria-hidden="true">→</span></span>
+            </a>
           ))
         }
       </div>
@@ -173,6 +177,26 @@ const impact = [
   }
   .impact-card .muted {
     font-size: var(--text-sm);
+  }
+  .impact-card {
+    display: block;
+    color: var(--color-text);
+  }
+  .impact-card:hover,
+  .impact-card:focus-visible {
+    text-decoration: none;
+  }
+  .impact-card:hover .impact-link,
+  .impact-card:focus-visible .impact-link {
+    color: var(--color-primary);
+  }
+  .impact-link {
+    display: inline-block;
+    margin-top: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: color var(--transition-interactive);
   }
 
   .what-section {
