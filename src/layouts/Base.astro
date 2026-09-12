@@ -7,16 +7,36 @@ export interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
   description = "Sekhar Nalla — Lead Mobile Software Engineer building Android and Kotlin Multiplatform platforms, improving mobile delivery systems, and applying AI automation to engineering workflows.",
   ogImage = "/og-default.svg",
+  structuredData = [],
 } = Astro.props;
 
 const siteUrl = "https://sekhar-nalla.dev";
 const fullTitle = title === "Sekhar Nalla" ? title : `${title} — Sekhar Nalla`;
+const pageUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const siteStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Sekhar Nalla",
+    url: siteUrl,
+    jobTitle: "Lead Mobile Software Engineer",
+    sameAs: ["https://www.linkedin.com/in/sekhar-nalla-2bb46763/"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Sekhar Nalla",
+    url: siteUrl,
+  },
+];
+const pageStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
 ---
 
 <!doctype html>
@@ -31,11 +51,17 @@ const fullTitle = title === "Sekhar Nalla" ? title : `${title} — Sekhar Nalla`
     <meta property="og:type" content="website">
     <meta property="og:title" content={fullTitle}>
     <meta property="og:description" content={description}>
-    <meta property="og:url" content={siteUrl}>
+    <meta property="og:url" content={pageUrl}>
+    <meta property="og:site_name" content="Sekhar Nalla">
     <meta property="og:image" content={`${siteUrl}${ogImage}`}>
+    <meta property="og:image:alt" content={fullTitle}>
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={fullTitle}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`}>
+    <link rel="canonical" href={pageUrl}>
+    <script type="application/ld+json" set:html={JSON.stringify([...siteStructuredData, ...pageStructuredData])}></script>
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="sitemap" href="/sitemap-index.xml">
 
     <!-- Fonts: Cabinet Grotesk + Satoshi (Fontshare), JetBrains Mono (Google) -->

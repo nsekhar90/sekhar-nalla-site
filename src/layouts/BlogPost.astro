@@ -15,9 +15,22 @@ const formattedDate = publishedAt.toLocaleDateString("en-US", {
   month: "long",
   day: "numeric",
 });
+const articleUrl = new URL(Astro.url.pathname, "https://sekhar-nalla.dev").toString();
 ---
 
-<Base title={title} description={description}>
+<Base
+  title={title}
+  description={description}
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    datePublished: publishedAt.toISOString(),
+    author: { "@type": "Person", name: "Sekhar Nalla" },
+    url: articleUrl,
+  }}
+>
   <article class="post section">
     <div class="container-narrow">
       <a href="/blog" class="back-link">← All writing</a>
