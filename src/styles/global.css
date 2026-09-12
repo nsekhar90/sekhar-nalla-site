@@ -434,3 +434,200 @@ a:hover {
     padding: 0.8rem 0.9rem;
   }
 }
+
+/* KMM XCFramework guide: preserve the richer layout from the standalone guide
+   while keeping it isolated from the rest of the site. */
+.kmm-guide {
+  --guide-accent: var(--color-primary);
+  --guide-accent-soft: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  --guide-phase-1: #0d7a4d;
+  --guide-phase-1-soft: #e8f5ee;
+  --guide-phase-2: #7c3aed;
+  --guide-phase-2-soft: #f3eeff;
+  --guide-code: var(--color-surface-offset);
+  color: var(--color-text);
+}
+
+.kmm-guide ol,
+.kmm-guide ul {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+}
+
+.kmm-guide ol { list-style: decimal; }
+.kmm-guide ul { list-style: disc; }
+.kmm-guide li { margin-bottom: 0.35rem; }
+
+.kmm-guide .diagram-wrap {
+  margin: 2rem 0;
+  padding: 2rem 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.kmm-guide .diagram-wrap figcaption {
+  margin-top: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.kmm-guide .arch-diagram {
+  display: block;
+  width: 720px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.kmm-guide .tldr {
+  margin: 2rem 0 2.5rem;
+  padding: 1.5rem 1.75rem;
+  border: 2px solid var(--guide-accent);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.kmm-guide .tldr h2,
+.kmm-guide .phase-header h2,
+.kmm-guide h2.section {
+  border: 0;
+}
+
+.kmm-guide .tldr h2 {
+  margin: 0 0 1rem;
+  padding: 0;
+  color: var(--guide-accent);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kmm-guide .tldr ol { margin: 0; }
+.kmm-guide .tldr li { margin-bottom: 0.6rem; }
+.kmm-guide .tldr li:last-child { margin-bottom: 0; }
+
+.kmm-guide h2.section {
+  margin: 2.5rem 0 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.kmm-guide .phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.kmm-guide .phase-header h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.kmm-guide .phase-badge {
+  flex-shrink: 0;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kmm-guide .phase-badge.p1 { background: var(--guide-phase-1); }
+.kmm-guide .phase-badge.p2 { background: var(--guide-phase-2); }
+
+.kmm-guide .strategy { margin-bottom: 2rem; }
+.kmm-guide .label-bad,
+.kmm-guide .label-good {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.kmm-guide .label-bad { color: var(--color-danger, #c0392b); }
+.kmm-guide .label-good { color: var(--guide-phase-1); }
+
+.kmm-guide .callout {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+}
+
+.kmm-guide .callout.p1 { border-left: 4px solid var(--guide-phase-1); background: var(--guide-phase-1-soft); }
+.kmm-guide .callout.p2 { border-left: 4px solid var(--guide-phase-2); background: var(--guide-phase-2-soft); }
+.kmm-guide .callout p:last-child { margin-bottom: 0; }
+
+.kmm-guide .table-wrap { margin: 1.25rem 0; }
+.kmm-guide table {
+  font-size: 0.95rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.kmm-guide th,
+.kmm-guide td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.kmm-guide th {
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kmm-guide tr:last-child td { border-bottom: 0; }
+
+.kmm-guide pre {
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--guide-code);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.kmm-guide pre code { background: none; padding: 0; font-size: inherit; }
+.kmm-guide .ascii { color: var(--color-text-muted); text-align: center; }
+
+.kmm-guide .checklist {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.kmm-guide .checklist li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.kmm-guide .checklist li:last-child { border-bottom: 0; }
+.kmm-guide .checklist li::before { content: "☐"; position: absolute; left: 0; color: var(--guide-accent); font-size: 1.1rem; }
+
+.kmm-guide .ref-section h2 { font-size: 1.25rem; }
+.kmm-guide footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.9rem; font-style: italic; }
+
+@media (max-width: 600px) {
+  .kmm-guide .phase-header { align-items: flex-start; flex-direction: column; }
+  .kmm-guide .tldr { padding: 1.25rem; }
+}
